@@ -1,14 +1,19 @@
-const http = require('node:http');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const PORT = 3000;
 
-const hostname = '127.0.0.1';
-const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
+// Middleware pour analser les requêtes JSON
+app.use(bodyParser.json());
+
+// Middleware pour analyser les requêtes URL encodées
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use('/api', require('./routes/api-routes'));
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-}); 
