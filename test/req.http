@@ -1,0 +1,28 @@
+POST http://localhost:3000/api/predict HTTP/1.1
+Content-Type: application/json
+
+{
+    "text": "how",
+    "language": "fr-FR"
+}
+
+
+
+###
+
+POST http://localhost:3000/api/score HTTP/1.1
+content-type: application/json
+
+[
+    {
+        "text" : "First test",
+        "language" : "en"
+
+    }
+]
+
+
+###
+GET https://moderation.logora.fr/predict?text=how&language=fr-FR HTTP/1.1
+
+

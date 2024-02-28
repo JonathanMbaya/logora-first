@@ -1,6 +1,7 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+
+const app = express();
 const PORT = 3000;
 
 
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use('/api', require('./routes/api-routes'));
+app.use('/api', require('./routes/api-routes'))
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
