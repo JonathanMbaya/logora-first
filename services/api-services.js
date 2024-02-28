@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 // Route pour obtenir une prédiction de modération
 module.exports.getPredict = async (req, res) => {
     try {
-        const { text, language } = req.query; // Récupérer les paramètres de la requête
+        const { text, language } = req.query; // Pour récupérer les paramètres de la requête
         const response = await fetch(`https://moderation.logora.fr/predict?text=${encodeURIComponent(text)}&language=${encodeURIComponent(language)}`, {
             method: 'GET',
             headers: {
@@ -24,16 +24,19 @@ module.exports.getPredict = async (req, res) => {
 // Route pour obtenir un score de qualité
 module.exports.getScore = async (req, res) => {
     try {
-        const { text, language } = req.query; // Récupérer les paramètres de la requête
+        const { text, language } = req.query; // Pour récupérer les paramètres de la requête
         const response = await fetch(`https://moderation.logora.fr/score?text=${encodeURIComponent(text)}&language=${encodeURIComponent(language)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+        // On recupère la réponse en format json
         const data = await response.json();
         res.json(data);
     } catch (error) {
+
+        // Si on a une erreur 
         console.error('Error:', error);
         res.status(500).send('Erreur du serveur');
     }
